@@ -25,6 +25,17 @@ class LinkedList:
         self.head.next = second_node
         self.size += 1
 
+    def append_after_index(self, idx, val):
+        if idx >= self.size:
+            raise IndexError('index {} is out of bounds'.format(idx))
+        curr_node = self.head
+        for _ in range(idx):
+            curr_node = curr_node.next
+        temp_node = curr_node.next
+        curr_node.next = Node(val)
+        curr_node.next.next = temp_node
+        self.size += 1
+
     def delete_by_index(self, idx):
         if idx >= self.size:
             raise IndexError('index {} is out of bounds'.format(idx))
@@ -80,4 +91,7 @@ if __name__ == '__main__':
     print(len(ll))
     print(ll)
     print(ll.delete_by_value(15))
+    print(ll)
+    ll.append_after_index(1, 14)
+    ll.append_after_index(1, 15)
     print(ll)
