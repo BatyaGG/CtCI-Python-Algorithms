@@ -15,14 +15,23 @@ class DoublyLinkedList:
         if self.size == 0:
             self.head = Node(val)
             self.back = self.head
-        self.back
+        else:
+            new_node = Node(val)
+            self.back.next = new_node
+            new_node.prev = self.back
+            self.back = new_node
+        self.size += 1
 
     def append_to_beginning(self, val):
         if self.size == 0:
             self.head = Node(val)
-            return
-        curr_node = self.head
-
+            self.back = self.head
+        else:
+            new_node = Node(val)
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.size += 1
 
     def delete_by_index(self, idx):
         pass
